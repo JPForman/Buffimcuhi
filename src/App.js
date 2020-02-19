@@ -1,26 +1,56 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Header from './Header';
+import NewBuffimuchi from './NewBuffimuchi';
+import Buffimuchi from './Buffimuchi';
 
-function App() {
+import { Switch, Route } from 'react-router-dom';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      buffimuchiCharacter: 'null'
+    };
+    this.handleNewBuffimuchi = this.handleNewBuffimuchi.bind(this);
+  }
+
+  handleNewBuffimuchi(newBuffimuchi) {
+    newBuffimuchi.formattedWaitTime = (newBuffimuchi.timeOpen).fromNow(true);
+    this.setState({buffimuchiCharacter: newBuffimuchi});
+  }
+
+  render (){
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+    <Header/>
+
+
+    <Switch>
+
+    <Route exact path='/' render={()=><NewBuffimuchi onNewTicketCreation={this.handleNewBuffimuchi} />} />
+
+
+
+
+    <Route path='/Buffimuchi' render={()=><Buffimuchi buffimuchiCharacter={this.state.buffimuchiCharacter} />} />
+
+
+
+    </Switch>
+
+    <style>{`
+      .App {
+        height: 100vh;
+        overflow: hidden;
+      }
+      `}
+      </style>
+      </div>
+    );
+  }
+}
+  export default App;
