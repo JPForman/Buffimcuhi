@@ -1,6 +1,7 @@
 import React from 'react';
 import Moment from 'moment';
 
+
 import logo from './logo.svg';
 import './App.css';
 import Header from './Header';
@@ -8,6 +9,8 @@ import NewBuffimuchi from './NewBuffimuchi';
 import Buffimuchi from './Buffimuchi';
 
 import { Switch, Route } from 'react-router-dom';
+
+
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +23,8 @@ class App extends React.Component {
     this.handleRawTamagotchi = this.handleRawTamagotchi.bind(this);
     this.handleSleep = this.handleSleep.bind(this);
     this.handleTossWeight = this.handleTossWeight.bind(this);
-  }
+    }
+
 
   componentDidMount() {
     this.waitTimeUpdateTimer = setInterval(() =>
@@ -28,14 +32,29 @@ class App extends React.Component {
     5000);
   }
 
-  updateBuffimuchiAge() {
+
+
+  updateBuffimuchiAge(props) {
     console.log("check");
-    let updateBuffimuchiCharacter = this.state.buffimuchiCharacter
-    updateBuffimuchiCharacter.energy = (updateBuffimuchiCharacter.energy + 1)
-    updateBuffimuchiCharacter.ripped = (updateBuffimuchiCharacter.ripped - 1)
-    updateBuffimuchiCharacter.happiness = (updateBuffimuchiCharacter.happiness + 1)
-    updateBuffimuchiCharacter.formattedWaitTime = (updateBuffimuchiCharacter.timeOpen).fromNow(true)
-    this.setState({buffimuchiCharacter: updateBuffimuchiCharacter})
+    let updateBuffimuchiCharacter = this.state.buffimuchiCharacter;
+    updateBuffimuchiCharacter.energy = (updateBuffimuchiCharacter.energy + 1);
+    updateBuffimuchiCharacter.ripped = (updateBuffimuchiCharacter.ripped - 1);
+    updateBuffimuchiCharacter.happiness = (updateBuffimuchiCharacter.happiness + 1);
+    updateBuffimuchiCharacter.formattedWaitTime = (updateBuffimuchiCharacter.timeOpen).fromNow(true);
+    this.setState({buffimuchiCharacter: updateBuffimuchiCharacter});
+
+    if (updateBuffimuchiCharacter.energy < 1) {
+      alert('ya dead, foo! enrgyyyyy');
+    }
+    else if (updateBuffimuchiCharacter.happiness < 80) {
+      alert('ya dead, foo! hpyyyyyy');
+      }
+    else if (updateBuffimuchiCharacter.ripped < 1) {
+      alert('ya dead, foo! skinNbones');
+    }
+    else if (updateBuffimuchiCharacter.ripped > 500 ) {
+      alert('ya wonnns');
+    }
   }
 
   handleNewBuffimuchi(newBuffimuchi) {
@@ -44,12 +63,18 @@ class App extends React.Component {
   }
 
   handleRoid() {
-    console.log("Roids!");
     let updateBuffimuchiCharacter = this.state.buffimuchiCharacter
     updateBuffimuchiCharacter.energy = (updateBuffimuchiCharacter.energy + 20)
     updateBuffimuchiCharacter.ripped = (updateBuffimuchiCharacter.ripped + 10)
     updateBuffimuchiCharacter.happiness = (updateBuffimuchiCharacter.happiness - 25)
     this.setState({buffimuchiCharacter: updateBuffimuchiCharacter})
+
+    let button = document.getElementById('buttonRoid')
+    button.style.display = "none";
+    setTimeout(function(){
+      button.style.display = "initial";
+    }, 1000);
+
   }
 
   handleRawTamagotchi() {
@@ -58,6 +83,13 @@ class App extends React.Component {
     updateBuffimuchiCharacter.ripped = (updateBuffimuchiCharacter.ripped - 1)
     updateBuffimuchiCharacter.happiness = (updateBuffimuchiCharacter.happiness + 15)
     this.setState({buffimuchiCharacter: updateBuffimuchiCharacter})
+
+    let button = document.getElementById('buttonRawTamagotchi')
+    button.style.display = "none";
+    setTimeout(function(){
+      button.style.display = "initial";
+    }, 1000);
+
   }
 
   handleSleep() {
@@ -66,6 +98,13 @@ class App extends React.Component {
     updateBuffimuchiCharacter.ripped = (updateBuffimuchiCharacter.ripped - 10)
     updateBuffimuchiCharacter.happiness = (updateBuffimuchiCharacter.happiness + 10)
     this.setState({buffimuchiCharacter: updateBuffimuchiCharacter})
+
+    let button = document.getElementById('buttonSleep')
+    button.style.display = "none";
+    setTimeout(function(){
+      button.style.display = "initial";
+    }, 5000);
+
   }
 
   handleTossWeight() {
@@ -74,6 +113,13 @@ class App extends React.Component {
     updateBuffimuchiCharacter.ripped = (updateBuffimuchiCharacter.ripped + 20)
     updateBuffimuchiCharacter.happiness = (updateBuffimuchiCharacter.happiness - 1)
     this.setState({buffimuchiCharacter: updateBuffimuchiCharacter})
+
+    let button = document.getElementById('buttonTossWeight')
+    button.style.display = "none";
+    setTimeout(function(){
+      button.style.display = "initial";
+    }, 3000);
+
   }
 
   render (){
@@ -113,4 +159,5 @@ class App extends React.Component {
     );
   }
 }
-  export default App;
+
+export default App;
