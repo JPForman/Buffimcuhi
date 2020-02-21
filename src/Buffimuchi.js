@@ -12,10 +12,15 @@ function Buffimuchi(props){
   return (
     <div className="buffimuchiClass">
 
-    <button id='buttonRoid' onClick={props.onRoid}>Get Juiced!</button>
-    <button id='buttonRawTamagotchi' onClick={props.onRawTamagotchi}>Eat Raw Tamagotchi!</button>
-    <button id='buttonSleep' onClick={props.onSleep}>Sleep!</button>
-    <button id='buttonTossWeight' onClick={props.onTossWeight}>Toss Weight Bra!</button>
+    <div className='buttonClass'>
+
+      <button id='buttonRoid' onClick={props.onRoid}>Get Juiced!</button>
+      <button id='buttonRawTamagotchi' onClick={props.onRawTamagotchi}>Eat Raw Tamagotchi!</button>
+      <button id='buttonSleep' onClick={props.onSleep}>Sleep!</button>
+      <button id='buttonTossWeight' onClick={props.onTossWeight}>Toss Weight Bra!</button>
+
+    </div>
+
 
     <h1>Your Buffimuchi: {props.buffimuchiCharacter.name}</h1>
     <div className="bodyClass">
@@ -67,8 +72,17 @@ function Buffimuchi(props){
 
 
     <style>{`
+      .buttonClass {
+      height: 4vh;
+      padding-top: 3vh;
+      }
+
       .bodyClass {
         text-align: center;
+        max-width: 50%;
+        border-radius: 100%;
+        background-color: rgba(0, 100, 0, .1);
+        padding: 2%;
         margin-left: auto;
         margin-right: auto;
       }
@@ -110,8 +124,8 @@ function Buffimuchi(props){
 
       .bicepClass {
         background-color: rgba(200, 150, 150, .3);
-        height: ${buffage/12}px;
-        width: ${buffage/12}px;
+        height: ${buffage/2}px;
+        width: ${buffage/3}px;
         border-top-left-radius: 100%;
         border-top-right-radius: 100%;
         border-bottom: 5px double black;

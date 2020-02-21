@@ -46,7 +46,7 @@ class App extends React.Component {
     if (updateBuffimuchiCharacter.energy < 1) {
       alert('ya dead, foo! enrgyyyyy');
     }
-    else if (updateBuffimuchiCharacter.happiness < 80) {
+    else if (updateBuffimuchiCharacter.happiness < 1) {
       alert('ya dead, foo! hpyyyyyy');
       }
     else if (updateBuffimuchiCharacter.ripped < 1) {
@@ -103,7 +103,7 @@ class App extends React.Component {
     button.style.display = "none";
     setTimeout(function(){
       button.style.display = "initial";
-    }, 5000);
+    }, 2000);
 
   }
 
@@ -118,7 +118,7 @@ class App extends React.Component {
     button.style.display = "none";
     setTimeout(function(){
       button.style.display = "initial";
-    }, 3000);
+    }, 1000);
 
   }
 
